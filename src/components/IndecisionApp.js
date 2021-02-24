@@ -6,43 +6,42 @@ import Options from './Options';
 import OptionModal from './OptionModal';
 
 export default class IndecisionApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      options: [],
-      selectedOption: undefined,
-    };
-  }
-  handleDeleteOptions() {
+  state = {
+    options: [],
+    selectedOption: undefined,
+  };
+  handleDeleteOptions = () => {
     this.setState(() => ({ options: [] }));
-  }
-  handlePick() {
+  };
+  handlePick = () => {
     const pick = this.state.options[
       Math.floor(Math.random() * this.state.options.length)
     ];
     this.setState(() => ({
       selectedOption: pick,
     }));
-  }
-  handleAddOption(option) {
+  };
+  handleAddOption = (option) => {
     if (!option) {
       return 'Enter valid value to add item';
     } else if (this.state.options.indexOf(option) >= 0) {
       return 'This option already exists';
     }
 
-    this.setState(prevState => ({ options: prevState.options.concat(option) }));
-  }
-  handleDeleteOption(optionToRemove) {
-    this.setState(prevState => ({
-      options: prevState.options.filter(option => option !== optionToRemove),
+    this.setState((prevState) => ({
+      options: prevState.options.concat(option),
     }));
-  }
-  handleDismissModal() {
+  };
+  handleDeleteOption = (optionToRemove) => {
+    this.setState((prevState) => ({
+      options: prevState.options.filter((option) => option !== optionToRemove),
+    }));
+  };
+  handleDismissModal = () => {
     this.setState(() => ({
       selectedOption: undefined,
     }));
-  }
+  };
   componentDidMount() {
     try {
       const json = localStorage.getItem('options');

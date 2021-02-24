@@ -2,13 +2,14 @@ import React from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 
-const OptionModal = props => (
+const OptionModal = (props) => (
   <Modal
     isOpen={!!props.selectedOption}
     contentLabel="Selected Option"
     onRequestClose={props.handleDismissModal}
     closeTimeoutMS={200}
     className="modal"
+    appElement={document.getElementById('app')}
   >
     <h3 className="modal__title">Selected Option</h3>
     {props.selectedOption && (
@@ -22,7 +23,7 @@ const OptionModal = props => (
 
 OptionModal.propTypes = {
   handleDismissModal: PropTypes.func.isRequired,
-  selectedOption: PropTypes.string.isRequired,
+  selectedOption: PropTypes.string,
 };
 
 export default OptionModal;
