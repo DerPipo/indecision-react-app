@@ -1,0 +1,14 @@
+{
+  "app_title": "Indecision",
+  "app_subtitle": "Put your life in the hands of a computer",
+  "indecision_button_title": "What should I do???",
+  "your_options": "Your Options",
+  "remove_all": "Remove All",
+  "remove": "Remove",
+  "add_option": "Add Option",
+  "enter_valid_value": "Enter valid value to add item",
+  "option_already_exists": "This option already exists",
+  "selected_option": "Selected Option",
+  "ok_button_title": "Okay, thanks!",
+  "no_options": "Add an option to get started..."
+}

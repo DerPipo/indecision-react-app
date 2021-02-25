@@ -1,0 +1,14 @@
+{
+  "app_title": "Zwiespalt - Die App",
+  "app_subtitle": "Lege dein Leben in die Hände eines Computers",
+  "indecision_button_title": "Was soll ich nur tun???",
+  "your_options": "Deine Optionen",
+  "remove_all": "Alle löschen",
+  "remove": "löschen",
+  "add_option": "Option hinzufügen",
+  "enter_valid_value": "Gib bitte einen Titel für deine Option ein",
+  "option_already_exists": "Diese Option existiert bereits",
+  "selected_option": "Meine Wahl:",
+  "ok_button_title": "Okay, danke!",
+  "no_options": "Füge eine Option hinzu um loszulegen..."
+}
