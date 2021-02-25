@@ -1,1 +1,5 @@
-- Add eslint-import-plugin to check imports
+- Add eslint-import-plugin to check imports (for example to avoid missing express dependency)
+
+DONE
+====
+- I18N

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 
 class AddOption extends React.Component {
   state = {
@@ -18,6 +19,7 @@ class AddOption extends React.Component {
     }
   };
   render() {
+    const { t } = this.props;
     return (
       <div className="add-option">
         {this.state.error && (
@@ -29,7 +31,7 @@ class AddOption extends React.Component {
             type="text"
             name="option"
           ></input>
-          <button className="button">Add Option</button>
+          <button className="button">{t('add_option')}</button>
         </form>
       </div>
     );
@@ -38,6 +40,9 @@ class AddOption extends React.Component {
 
 AddOption.propTypes = {
   handleAddOption: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
-export default AddOption;
+const AddOptionWithTranslation = withTranslation()(AddOption);
+
+export default AddOptionWithTranslation;

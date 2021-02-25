@@ -1,11 +1,13 @@
 import React from 'react';
+import { withTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 import AddOption from './AddOption';
 import Header from './Header';
 import Action from './Action';
 import Options from './Options';
 import OptionModal from './OptionModal';
 
-export default class IndecisionApp extends React.Component {
+class IndecisionApp extends React.Component {
   state = {
     options: [],
     selectedOption: undefined,
@@ -22,10 +24,11 @@ export default class IndecisionApp extends React.Component {
     }));
   };
   handleAddOption = (option) => {
+    const { t } = this.props;
     if (!option) {
-      return 'Enter valid value to add item';
+      return t('enter_valid_value');
     } else if (this.state.options.indexOf(option) >= 0) {
-      return 'This option already exists';
+      return t('option_already_exists');
     }
 
     this.setState((prevState) => ({
@@ -59,16 +62,13 @@ export default class IndecisionApp extends React.Component {
       localStorage.setItem('options', json);
     }
   }
-  componentWillUnmount() {
-    console.log('componentWillUnmount');
-  }
 
   render() {
-    const subtitle = 'Put your life in the hands of a computer';
+    const { t } = this.props;
 
     return (
       <div>
-        <Header subtitle={subtitle} />
+        <Header title={t('app_title')} subtitle={t('app_subtitle')} />
         <div className="container">
           <Action
             hasOptions={this.state.options.length > 0}
@@ -91,3 +91,11 @@ export default class IndecisionApp extends React.Component {
     );
   }
 }
+
+const IndecisionAppWithTranslation = withTranslation()(IndecisionApp);
+
+IndecisionApp.propTypes = {
+  t: PropTypes.func.isRequired,
+};
+
+export default IndecisionAppWithTranslation;
