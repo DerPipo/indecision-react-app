@@ -15,25 +15,27 @@ const Header = (props) => {
             )}
           </div>
           <div className="header__one-line">
-            <button
-              className="header__lng-button"
-              disabled={i18n.language === 'en'}
-              onClick={() => {
-                i18n.changeLanguage('en');
-              }}
-            >
-              🇺🇸
-            </button>
-            |
-            <button
-              className="header__lng-button"
-              disabled={i18n.language === 'de'}
-              onClick={() => {
-                i18n.changeLanguage('de');
-              }}
-            >
-              🇩🇪
-            </button>
+            {i18n.language !== 'en' && (
+              <button
+                className="header__lng-button"
+                onClick={() => {
+                  i18n.changeLanguage('en');
+                }}
+              >
+                🇺🇸
+              </button>
+            )}
+            {i18n.language !== 'de' && (
+              <button
+                className="header__lng-button"
+                disabled={i18n.language === 'de'}
+                onClick={() => {
+                  i18n.changeLanguage('de');
+                }}
+              >
+                🇩🇪
+              </button>
+            )}
           </div>
         </div>
       </div>

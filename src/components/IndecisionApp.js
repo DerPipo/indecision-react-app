@@ -24,11 +24,10 @@ class IndecisionApp extends React.Component {
     }));
   };
   handleAddOption = (option) => {
-    const { t } = this.props;
     if (!option) {
-      return t('enter_valid_value');
+      return 'enter_valid_value';
     } else if (this.state.options.indexOf(option) >= 0) {
-      return t('option_already_exists');
+      return 'option_already_exists';
     }
 
     this.setState((prevState) => ({
