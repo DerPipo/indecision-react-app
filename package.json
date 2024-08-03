@@ -13,9 +13,9 @@
     "format": "bunx prettier --write ."
   },
   "dependencies": {
-    "i18next": "^19.9.0",
-    "i18next-browser-languagedetector": "^6.0.1",
-    "i18next-http-backend": "^1.1.1",
+    "i18next": "^23.12.2",
+    "i18next-browser-languagedetector": "^8.0.0",
+    "i18next-http-backend": "^2.5.2",
     "normalize.css": "^8.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
