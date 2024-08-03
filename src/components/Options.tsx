@@ -1,9 +1,11 @@
-import React from 'react';
 import Option from './Option';
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
-const Options = (props) => {
+const Options = (props: {
+  handleDeleteOptions: () => void;
+  handleDeleteOption: (option: string) => void;
+  options: string[];
+}) => {
   const { t } = useTranslation();
   return (
     <div>
@@ -29,12 +31,6 @@ const Options = (props) => {
       ))}
     </div>
   );
-};
-
-Options.propTypes = {
-  handleDeleteOptions: PropTypes.func.isRequired,
-  handleDeleteOption: PropTypes.func.isRequired,
-  options: PropTypes.array.isRequired,
 };
 
 export default Options;
