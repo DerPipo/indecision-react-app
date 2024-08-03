@@ -1,100 +1,91 @@
-import React from 'react';
-import { withTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import AddOption from './AddOption';
 import Header from './Header';
 import Action from './Action';
 import Options from './Options';
 import OptionModal from './OptionModal';
 
-class IndecisionApp extends React.Component {
-  state = {
-    options: [],
-    selectedOption: undefined,
+function getOptionsFromLocalStorage() {
+  try {
+    const json = localStorage.getItem('options');
+
+    if (!json) {
+      return [];
+    }
+
+    const options = JSON.parse(json);
+    if (
+      Array.isArray(options) &&
+      options.every((option) => typeof option === 'string')
+    ) {
+      return options;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+  return [];
+}
+
+function IndecisionApp() {
+  const { t } = useTranslation();
+  const [options, setOptions] = useState<string[]>(getOptionsFromLocalStorage);
+  const [selectedOption, setSelectedOption] = useState<string | undefined>(
+    undefined
+  );
+
+  const handleDeleteOptions = () => {
+    setOptions([]);
   };
-  handleDeleteOptions = () => {
-    this.setState(() => ({ options: [] }));
+
+  const handlePick = () => {
+    const pick = options[Math.floor(Math.random() * options.length)];
+    setSelectedOption(pick);
   };
-  handlePick = () => {
-    const pick = this.state.options[
-      Math.floor(Math.random() * this.state.options.length)
-    ];
-    this.setState(() => ({
-      selectedOption: pick,
-    }));
-  };
-  handleAddOption = (option) => {
-    if (!option) {
+
+  const handleAddOption = (option: string) => {
+    if (option === '') {
       return 'enter_valid_value';
-    } else if (this.state.options.indexOf(option) >= 0) {
+    } else if (options.indexOf(option) >= 0) {
       return 'option_already_exists';
     }
 
-    this.setState((prevState) => ({
-      options: prevState.options.concat(option),
-    }));
+    setOptions((prevState) => prevState.concat(option));
+    return null;
   };
-  handleDeleteOption = (optionToRemove) => {
-    this.setState((prevState) => ({
-      options: prevState.options.filter((option) => option !== optionToRemove),
-    }));
-  };
-  handleDismissModal = () => {
-    this.setState(() => ({
-      selectedOption: undefined,
-    }));
-  };
-  componentDidMount() {
-    try {
-      const json = localStorage.getItem('options');
-      const options = JSON.parse(json);
-      if (options) {
-        this.setState(() => ({ options }));
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.options.length !== this.state.options.length) {
-      const json = JSON.stringify(this.state.options);
-      localStorage.setItem('options', json);
-    }
-  }
 
-  render() {
-    const { t } = this.props;
-
-    return (
-      <div>
-        <Header title={t('app_title')} subtitle={t('app_subtitle')} />
-        <div className="container">
-          <Action
-            hasOptions={this.state.options.length > 0}
-            handlePick={this.handlePick}
-          />
-          <div className="widget">
-            <Options
-              options={this.state.options}
-              handleDeleteOptions={this.handleDeleteOptions}
-              handleDeleteOption={this.handleDeleteOption}
-            />
-            <AddOption handleAddOption={this.handleAddOption} />
-          </div>
-        </div>
-        <OptionModal
-          selectedOption={this.state.selectedOption}
-          handleDismissModal={this.handleDismissModal}
-        />
-      </div>
+  const handleDeleteOption = (optionToRemove: string) => {
+    setOptions((prevState) =>
+      prevState.filter((option) => option !== optionToRemove)
     );
-  }
+  };
+
+  const handleDismissModal = () => setSelectedOption(undefined);
+
+  useEffect(() => {
+    localStorage.setItem('options', JSON.stringify(options));
+  }, [options]);
+
+  return (
+    <div>
+      <Header title={t('app_title')} subtitle={t('app_subtitle')} />
+      <div className="container">
+        <Action hasOptions={options.length > 0} handlePick={handlePick} />
+        <div className="widget">
+          <Options
+            options={options}
+            handleDeleteOptions={handleDeleteOptions}
+            handleDeleteOption={handleDeleteOption}
+          />
+          <AddOption handleAddOption={handleAddOption} />
+        </div>
+      </div>
+      <OptionModal
+        selectedOption={selectedOption}
+        handleDismissModal={handleDismissModal}
+      />
+    </div>
+  );
 }
 
-const IndecisionAppWithTranslation = withTranslation()(IndecisionApp);
-
-IndecisionApp.propTypes = {
-  t: PropTypes.func.isRequired,
-};
-
-export default IndecisionAppWithTranslation;
+export default IndecisionApp;
