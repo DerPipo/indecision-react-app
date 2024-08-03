@@ -1,8 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
-const Option = (props) => {
+const Option = (props: {
+  count: number;
+  option: string;
+  handleDeleteOption: (option: string) => void;
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -20,12 +22,6 @@ const Option = (props) => {
       </button>
     </div>
   );
-};
-
-Option.propTypes = {
-  count: PropTypes.number.isRequired,
-  option: PropTypes.string.isRequired,
-  handleDeleteOption: PropTypes.func.isRequired,
 };
 
 export default Option;

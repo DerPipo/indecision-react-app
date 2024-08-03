@@ -1,8 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
-const Action = (props) => {
+const Action = (props: { hasOptions: boolean; handlePick: () => void }) => {
   const { t } = useTranslation();
 
   return (
@@ -16,11 +14,6 @@ const Action = (props) => {
       </button>
     </div>
   );
-};
-
-Action.propTypes = {
-  hasOptions: PropTypes.bool.isRequired,
-  handlePick: PropTypes.func.isRequired,
 };
 
 export default Action;

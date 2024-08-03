@@ -1,8 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
-const Header = (props) => {
+const Header = (props: { title: string; subtitle?: string }) => {
   const { i18n } = useTranslation();
   return (
     <div className="header">
@@ -41,15 +39,6 @@ const Header = (props) => {
       </div>
     </div>
   );
-};
-
-Header.defaultProps = {
-  title: 'Indecision',
-};
-
-Header.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
 };
 
 export default Header;
