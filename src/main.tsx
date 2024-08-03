@@ -6,8 +6,10 @@ import './styles/styles.scss';
 import './i18n/i18n';
 
 ReactDOM.render(
-  <Suspense fallback="Loading...">
-    <IndecisionApp />
-  </Suspense>,
-  document.getElementById('app')
+  <React.StrictMode>
+    <Suspense fallback="Loading...">
+      <IndecisionApp />
+    </Suspense>
+  </React.StrictMode>,
+  document.getElementById('root')
 );

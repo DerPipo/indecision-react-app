@@ -1,4 +1,10 @@
-- Add eslint-import-plugin to check imports (for example to avoid missing express dependency)
+TODO
+====
+- Migrate to TypeScript
+- Update ESLint to v9 (and maybe flat config)
+- Update dependencies in general
+- Add deployment to Netlify
+- Add README
 
 DONE
 ====
