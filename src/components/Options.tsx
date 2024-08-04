@@ -1,5 +1,6 @@
-import Option from './Option';
 import { useTranslation } from 'react-i18next';
+
+import Option from './Option';
 
 const Options = (props: {
   handleDeleteOptions: () => void;
