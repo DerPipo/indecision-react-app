@@ -1,6 +1,6 @@
-import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import Modal from 'react-modal';
 
 const OptionModal = (props: {
   handleDismissModal: () => void;

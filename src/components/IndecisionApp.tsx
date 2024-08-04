@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import Action from './Action';
 import AddOption from './AddOption';
 import Header from './Header';
-import Action from './Action';
-import Options from './Options';
 import OptionModal from './OptionModal';
+import Options from './Options';
 
 function getOptionsFromLocalStorage() {
   try {
