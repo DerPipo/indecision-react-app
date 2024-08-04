@@ -34,7 +34,7 @@ const renderForm = () => {
       </button>
       <button onClick={removeAll}>Remove All</button>
       <ol>
-        {app.options.map(option => (
+        {app.options.map((option) => (
           <li key={option}>{option}</li>
         ))}
       </ol>
@@ -47,7 +47,7 @@ const renderForm = () => {
   ReactDOM.render(template, appRoot);
 };
 
-const onFormSubmit = e => {
+const onFormSubmit = (e) => {
   e.preventDefault();
 
   const option = e.target.elements.option.value;

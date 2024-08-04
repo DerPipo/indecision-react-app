@@ -13,7 +13,7 @@ const user = {
   cities: ['Philadelphia', 'New York', 'Dublin'],
   printPlacesLived() {
     return this.cities.map((city) => this.name + ' has lived in ' + city);
-  }
+  },
 };
 console.log(user.printPlacesLived());
 
@@ -29,31 +29,31 @@ console.log(user.printPlacesLived());
 
 // console.log(multiplier.multiply());
 
-const myArray = ['a', 'b', 'c']
+const myArray = ['a', 'b', 'c'];
 
 myArray.myForEach = function (callback) {
   for (let i = 0; i < this.length; i++) {
-    callback(this[i])
+    callback(this[i]);
   }
-}
+};
 
 myArray.myMap = function (callback) {
-  let a = []
+  let a = [];
   for (let i = 0; i < this.length; i++) {
-    a.push(callback(this[i]))
+    a.push(callback(this[i]));
   }
-  return a
-}
+  return a;
+};
 
-myArray.myForEach(i => console.log(i))
-console.log(myArray.myMap(i => i.toUpperCase()))
+myArray.myForEach((i) => console.log(i));
+console.log(myArray.myMap((i) => i.toUpperCase()));
 
 const multiplier = {
   numbers: [10, 20, 30],
   multiplyBy: 3,
   multiply() {
-    return this.numbers.map(x => x * this.multiplyBy)
-  }
-}
+    return this.numbers.map((x) => x * this.multiplyBy);
+  },
+};
 
-console.log(multiplier.multiply())
+console.log(multiplier.multiply());
